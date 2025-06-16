@@ -4,6 +4,10 @@ import Gui.WeatherORamaView;
 import Model.DatosClima;
 import Observer.Observer;
 import DisplayElement.AlertSystem;
+import DisplayElement.CurrentConditionsDisplay;
+import DisplayElement.StatisticsSystem;
+import DisplayElement.ForecastDisplay;
+import DisplayElement.AQIDisplay;
 
 public class WeatherORamaController {
     private final DatosClima datosClima;
@@ -22,7 +26,30 @@ public class WeatherORamaController {
         datosClima = new DatosClima();
         vista = new WeatherORamaView();
         alertSystem = new AlertSystem(datosClima);
+        configurarListeners();
+    }
+    
+private void configurarListeners() {
+    vista.getBtnCondicionesActuales().addActionListener(e -> {
+                new CurrentConditionsDisplay(datosClima);
+                vista.seccionCurrentConditions();
+            });
 
+            vista.getBtnEstadisticas().addActionListener(e -> {
+                new StatisticsSystem(datosClima);
+                vista.seccionStatistics();
+            });
+
+            vista.getBtnPronostico().addActionListener(e -> {
+                new ForecastDisplay(datosClima);
+                vista.seccionForecast();
+            });
+
+            vista.getBtnCalidadAire().addActionListener(e -> {
+                new AQIDisplay(datosClima, vista);
+                vista.seccionAQI();
+            });
+        
         // Observador anónimo
         datosClima.registerObserver(new Observer() {
             @Override
