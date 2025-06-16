@@ -76,7 +76,10 @@ public class AlertSystem implements Observer, ElementoVisual {
     }
 
     public String getAlertSummary() {
-        return "";
+        if (triggeredAlerts.isEmpty()) {
+            return "No hay alertas";
+        }
+        return String.join(" | ", triggeredAlerts);
     }
 
 }
