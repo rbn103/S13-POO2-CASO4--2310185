@@ -35,13 +35,13 @@ public class AlertSystem implements Observer, ElementoVisual {
 
     @Override
     public void mostrar() {
-        System.out.println("🚨 Sistema de Alertas:");
+        System.out.println("Sistema de Alertas:");
         if (alertActive) {
             for (String alerta : triggeredAlerts) {
-                System.out.println("⚠️ " + alerta);
+                System.out.println(alerta);
             }
         } else {
-            System.out.println("✔️ Todo en orden. No hay alertas activas.");
+            System.out.println("No hay alertas activas.");
         }
         System.out.println("---------------------------\n");
     }
